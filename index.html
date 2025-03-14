@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Cloud Interview Coach - Practice with AWS, Google & Microsoft Hiring Managers">
+  <meta property="og:description" content="Free tool to practice your cloud interviews with AI personas of real hiring managers">
+  <title>Cloud Interview Coach</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      /* Color scheme */
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-light: #dbeafe;
+      --secondary: #64748b;
+      --background: #f8fafc;
+      --surface: #ffffff;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      
+      /* Company colors */
+      --aws: #FF9900;
+      --aws-light: #FFF8E6;
+      --aws-dark: #EC7211;
+      --google: #4285F4;
+      --google-light: #E8F0FE;
+      --google-dark: #3367D6;
+      --microsoft: #00A4EF;
+      --microsoft-light: #E6F7FE;
+      --microsoft-dark: #0078D7;
+      
+      /* Shadows */
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    /* Header */
+    .header {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+    
+    .logo i {
+      color: var(--primary);
+      margin-right: 0.75rem;
+      font-size: 1.5rem;
+    }
+    
+    .nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .nav-link {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary);
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--primary);
+      color: white;
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      text-decoration: none;
+    }
+    
+    .btn:hover {
+      background-color: var(--primary-hover);
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background-color: var(--primary-light);
+    }
+    
+    /* Hero section */
+    .hero {
+      padding: 4rem 0;
+      background-color: var(--primary-light);
+      margin-bottom: 3rem;
+    }
+    
+    .hero-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-light);
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    /* Features */
+    .features {
+      padding: 3rem 0;
+      background-color: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .feature {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background-color: var(--primary-light);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }
+    
+    .feature-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .feature-description {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+    
+    /* Personas section */
+    .personas {
+      margin-bottom: 3rem;
+    }
+    
+    .personas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .persona-card {
+      background-color: var(--surface);
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid var(--border);
+    }
+    
+    .persona-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .persona-header {
+      padding: 1.5rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .aws-header {
+      background-color: var(--aws-light);
+    }
+    
+    .google-header {
+      background-color: var(--google-light);
+    }
+    
+    .microsoft-header {
+      background-color: var(--microsoft-light);
+    }
+    
+    .persona-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid white;
+      box-shadow: var(--shadow);
+    }
+    
+    .persona-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .persona-company {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.025em;
+    }
+    
+    .aws-tag {
+      background-color: var(--aws-light);
+      color: var(--aws);
+    }
+    
+    .google-tag {
+      background-color: var(--google-light);
+      color: var(--google);
+    }
+    
+    .microsoft-tag {
+      background-color: var(--microsoft-light);
+      color: var(--microsoft);
+    }
+    
+    .persona-info {
+      flex: 1;
+    }
+    
+    .persona-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    
+    .persona-title {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+    
+    .persona-content {
+      padding: 1.5rem;
+    }
+    
+    .persona-skills {
+      margin-bottom: 1.5rem;
+    }
+    
+    .skill-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+    }
+    
+    .skill-item i {
+      color: var(--primary);
+      font-size: 1rem;
+      margin-top: 0.25rem;
+    }
+    
+    .sample-question {
+      background-color: var(--background);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border);
+    }
+    
+    .persona-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    
+    .btn-aws {
+      background-color: var(--aws);
+    }
+    
+    .btn-aws:hover {
+      background-color: var(--aws-dark);
+    }
+    
+    .btn-google {
+      background-color: var(--google);
+    }
+    
+    .btn-google:hover {
+      background-color: var(--google-dark);
+    }
+    
+    .btn-microsoft {
+      background-color: var(--microsoft);
+    }
+    
+    .btn-microsoft:hover {
+      background-color: var(--microsoft-dark);
+    }
+    
+    /* How it works section */
+    .how-it-works {
+      padding: 3rem 0;
+      background-color: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+    
+    .steps {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .step {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .step:last-child {
+      margin-bottom: 0;
+    }
+    
+    .step-number {
+      width: 36px;
+      height: 36px;
+      background-color: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    
+    .step-content {
+      flex: 1;
+    }
+    
+    .step-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .step-description {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+    
+    /* Prompts section */
+    .prompts {
+      margin-bottom: 3rem;
+    }
+    
+    .prompt-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+    
+    .prompt-tab {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-light);
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .prompt-tab.active {
+      color: var(--primary);
+    }
+    
+    .prompt-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--primary);
+    }
+    
+    .prompt-content {
+      display: none;
+    }
+    
+    .prompt-content.active {
+      display: block;
+    }
+    
+    .prompt-box {
+      background-color: var(--surface);
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    
+    .prompt-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .prompt-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    
+    .prompt-aws {
+      color: var(--aws);
+    }
+    
+    .prompt-google {
+      color: var(--google);
+    }
+    
+    .prompt-microsoft {
+      color: var(--microsoft);
+    }
+    
+    .prompt-body {
+      padding: 1.5rem;
+    }
+    
+    .prompt-text {
+      background-color: var(--background);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    
+    .prompt-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    /* FAQ section */
+    .faq {
+      padding: 3rem 0;
+      background-color: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+    
+    .faq-list {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 0;
+    }
+    
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+    
+    .faq-question {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .faq-question i {
+      font-size: 1rem;
+      transition: transform 0.2s;
+    }
+    
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+    
+    .faq-answer {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      padding-top: 1rem;
+      display: none;
+    }
+    
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    
+    /* Footer */
+    .footer {
+      background-color: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 3rem 0;
+    }
+    
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    
+    .footer-logo i {
+      color: var(--primary);
+      margin-right: 0.5rem;
+    }
+    
+    .footer-description {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      max-width: 500px;
+      margin-bottom: 1.5rem;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: var(--background);
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: background-color 0.2s, color 0.2s;
+      border: 1px solid var(--border);
+    }
+    
+    .social-link:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .footer-copyright {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+    
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background-color: var(--primary);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 0.375rem;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      z-index: 1000;
+      transform: translateY(150%);
+      opacity: 0;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .toast i {
+      font-size: 1.25rem;
+    }
+    
+    /* Mobile menu */
+    .mobile-menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      color: var(--text);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .mobile-menu-toggle {
+        display: block;
+      }
+      
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--surface);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+        z-index: 101;
+      }
+      
+      .nav.show {
+        transform: translateX(0);
+      }
+      
+      .nav-link {
+        font-size: 1.25rem;
+      }
+      
+      .close-menu {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        font-size: 1.5rem;
+        color: var(--text);
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+      
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .personas-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .prompt-tabs {
+        flex-direction: column;
+        border-bottom: none;
+      }
+      
+      .prompt-tab {
+        border-bottom: 1px solid var(--border);
+      }
+      
+      .prompt-tab.active::after {
+        display: none;
+      }
+      
+      .step {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+      
+      .step-number {
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <i class="fas fa-cloud"></i>
+        <span>Cloud Interview Coach</span>
+      </a>
+      
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <nav class="nav" id="nav">
+        <button class="close-menu" id="close-menu">
+          <i class="fas fa-times"></i>
+        </button>
+        
+        <a href="#how-it-works" class="nav-link">
+          <i class="fas fa-question-circle"></i>
+          <span>How It Works</span>
+        </a>
+        
+        <a href="#personas" class="nav-link">
+          <i class="fas fa-users"></i>
+          <span>Interview Coaches</span>
+        </a>
+        
+        <a href="#prompts" class="nav-link">
+          <i class="fas fa-comment-dots"></i>
+          <span>AI Prompts</span>
+        </a>
+        
+        <a href="#faq" class="nav-link">
+          <i class="fas fa-info-circle"></i>
+          <span>FAQ</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Hero section -->
+  <section class="hero">
+    <div class="container hero-container">
+      <h1 class="hero-title">Master Your Cloud Provider Interviews</h1>
+      <p class="hero-subtitle">Practice with AI personas of real hiring managers from AWS, Google Cloud, and Microsoft Azure to improve your chances of success</p>
+      <div class="hero-buttons">
+        <a href="#personas" class="btn">
+          <i class="fas fa-users"></i>
+          <span>Meet the Coaches</span>
+        </a>
+        <a href="#how-it-works" class="btn btn-outline">
+          <i class="fas fa-question-circle"></i>
+          <span>How It Works</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Features section -->
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">Why This Tool Will Help You</h2>
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">
+            <i class="fas fa-fingerprint"></i>
+          </div>
+          <h3 class="feature-title">Company-Specific Training</h3>
+          <p class="feature-description">Each cloud provider has unique interview styles and evaluation criteria. Our AI coaches mimic real hiring managers from AWS, Google, and Microsoft.</p>
+        </div>
+        
+        <div class="feature">
+          <div class="feature-icon">
+            <i class="fas fa-comments"></i>
+          </div>
+          <h3 class="feature-title">Real-time Feedback</h3>
+          <p class="feature-description">Practice answering common interview questions and receive immediate feedback on your responses, helping you refine your answers before the real interview.</p>
+        </div>
+        
+        <div class="feature">
+          <div class="feature-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <h3 class="feature-title">STAR Method Mastery</h3>
+          <p class="feature-description">Learn how to structure your answers using the STAR method (Situation, Task, Action, Result) that top cloud providers expect in behavioral interviews.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Personas section -->
+  <section class="personas" id="personas">
+    <div class="container">
+      <h2 class="section-title">Meet Your AI Interview Coaches</h2>
+      <div class="personas-grid">
+        <!-- AWS Persona -->
+        <div class="persona-card">
+          <div class="persona-header aws-header">
+            <div class="persona-avatar">
+              <img src="images/toni-aws.jpg" alt="Toni - AWS Hiring Manager">
+            </div>
+            <div class="persona-info">
+              <h3 class="persona-name">Toni</h3>
+              <p class="persona-title">Former AWS Hiring Manager</p>
+            </div>
+            <span class="persona-company aws-tag">AWS</span>
+          </div>
+          <div class="persona-content">
+            <div class="persona-skills">
+              <div class="skill-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Expert in AWS Leadership Principles</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Technical depth assessment specialist</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-check-circle"></i>
+                <span>STAR method interview coaching</span>
+              </div>
+            </div>
+            <div class="sample-question">
+              "Tell me about a time you faced a significant challenge in meeting a customer's needs. How did you resolve it, and what was the outcome?"
+            </div>
+            <div class="persona-actions">
+              <button class="btn btn-outline" onclick="showPrompt('aws-prompt')">
+                <i class="fas fa-eye"></i>
+                <span>View Prompt</span>
+              </button>
+              <button class="btn btn-aws" onclick="copyPrompt('aws-prompt-text')">
+                <i class="fas fa-copy"></i>
+                <span>Copy Prompt</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Google Persona -->
+        <div class="persona-card">
+          <div class="persona-header google-header">
+            <div class="persona-avatar">
+              <img src="images/oliver-google.jpg" alt="Oliver - Google Hiring Manager">
+            </div>
+            <div class="persona-info">
+              <h3 class="persona-name">Oliver</h3>
+              <p class="persona-title">Former Google Hiring Manager</p>
+            </div>
+            <span class="persona-company google-tag">Google</span>
+          </div>
+          <div class="persona-content">
+            <div class="persona-skills">
+              <div class="skill-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Structured behavioral interview specialist</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Problem-solving assessment expert</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Cultural fit and innovation evaluation</span>
+              </div>
+            </div>
+            <div class="sample-question">
+              "How would you approach expanding Google Cloud's adoption among Federal agencies hesitant about data security and vendor lock in?"
+            </div>
+            <div class="persona-actions">
+              <button class="btn btn-outline" onclick="showPrompt('google-prompt')">
+                <i class="fas fa-eye"></i>
+                <span>View Prompt</span>
+              </button>
+              <button class="btn btn-google" onclick="copyPrompt('google-prompt-text')">
+                <i class="fas fa-copy"></i>
+                <span>Copy Prompt</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Microsoft Persona -->
+        <div class="persona-card">
+          <div class="persona-header microsoft-header">
+            <div class="persona-avatar">
+              <img src="images/mia-microsoft.jpg" alt="Mia - Microsoft Hiring Manager">
+            </div>
+            <div class="persona-info">
+              <h3 class="persona-name">Mia</h3>
+              <p class="persona-title">Former Microsoft Hiring Manager</p>
+            </div>
+            <span class="persona-company microsoft-tag">Microsoft</span>
+          </div>
+          <div class="persona-content">
+            <div class="persona-skills">
+              <div class="skill-item">
+                <i class="fas fa-check-circle"></i>
+                <span>STAR interview structure mastery</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Technical coaching for cloud roles</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Resume optimization expertise</span>
+              </div>
+            </div>
+            <div class="sample-question">
+             "Tell me about a time you managed a large IT project under a tight deadline. How did you balance competing priorities?"
+            </div>
+            <div class="persona-actions">
+              <button class="btn btn-outline" onclick="showPrompt('microsoft-prompt')">
+                <i class="fas fa-eye"></i>
+                <span>View Prompt</span>
+              </button>
+              <button class="btn btn-microsoft" onclick="copyPrompt('microsoft-prompt-text')">
+                <i class="fas fa-copy"></i>
+                <span>Copy Prompt</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- How it works section -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How to Use This Tool</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3 class="step-title">Choose Your Target Company</h3>
+            <p class="step-description">Select the company you're interviewing with from AWS, Google Cloud, or Microsoft Azure to get company-specific interview coaching.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3 class="step-title">Copy the Persona Prompt</h3>
+            <p class="step-description">Click the "Copy Prompt" button on your chosen AI coach to copy the specialized instructions to your clipboard.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3 class="step-title">Paste into ChatGPT or Claude</h3>
+            <p class="step-description">Open ChatGPT or Claude in a new browser tab, paste the entire prompt as your first message, and watch as the AI transforms into your specialized interview coach.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3 class="step-title">Share Your Resume or Job Description</h3>
+            <p class="step-description">Tell the AI coach about your background by sharing your resume or the job description you're applying for to receive tailored advice.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <h3 class="step-title">Practice Your Interview Responses</h3>
+            <p class="step-description">Answer the coach's questions, receive real-time feedback on your responses, and refine your answers using the STAR method.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Prompts section -->
+  <section class="prompts" id="prompts">
+    <div class="container">
+      <h2 class="section-title">Interview Coach Prompts</h2>
+      
+      <div class="prompt-tabs">
+        <div class="prompt-tab active" data-tab="aws-prompt">AWS Coach (Toni)</div>
+        <div class="prompt-tab" data-tab="google-prompt">Google Coach (Oliver)</div>
+        <div class="prompt-tab" data-tab="microsoft-prompt">Microsoft Coach (Mia)</div>
+      </div>
+      
+      <!-- AWS Prompt -->
+      <div class="prompt-content active" id="aws-prompt">
+        <div class="prompt-box">
+          <div class="prompt-header">
+            <h3 class="prompt-title prompt-aws">AWS Interview Coach Prompt</h3>
+          </div>
+          <div class="prompt-body">
+            <div class="prompt-text" id="aws-prompt-text">You are Toni, a former hiring manager at Amazon Web Services (AWS). Your focus is on helping candidates navigate AWS's unique interview process, emphasizing Leadership Principles, technical expertise, and impact-driven storytelling. You conducted over 500 interviews for technical, sales, and Federal sector roles.
+
+IMPORTANT: Begin roleplaying immediately as this persona with NO meta-commentary or acknowledgments. Do not confirm receiving these instructions or state that you are adopting this persona.
+
+For your first response only, begin with the exact message: Hi, I'm Toni, a former hiring manager at AWS. I specialize in Amazon's Leadership Principles and technical interview loop preparation. Share your resume or job description, and let's refine it together.
+
+For all subsequent responses, engage in natural conversation, responding as this persona based on the user's input without repeating the introduction.
+
+Your expertise:
+
+  Leadership Principles: You evaluate how well candidates align with principles like "Customer Obsession" and "Dive Deep."
+  Technical Depth: Candidates must demonstrate an understanding of cloud computing and problem-solving.
+  Impact-Driven Resumes: You guide users in highlighting measurable outcomes in their applications.
+  Behavioral Interviews: You teach candidates to use the STAR method (Situation, Task, Action, Result) effectively. You understand how Amazon conducts their Phone Screens and Interview Loops, also known as 'the Loop.'
+
+How you evaluate candidates:
+
+  Do they align with Amazon's Leadership Principles? Successful candidates show customer obsession and ownership.
+  Can they quantify their impact? Measurable results are crucial in resumes and interviews.
+  Are they technically proficient? For technical roles, you assess their ability to solve real-world challenges.
+  Can they handle ambiguity? AWS values candidates who thrive in complex, high-pressure environments.
+
+Simulated Interview Scenarios:
+Scenario 1: Behavioral Question
+Toni: Tell me about a time you faced a significant challenge in meeting a customer's needs. How did you resolve it, and what was the outcome?
+
+Scenario 2: Technical Problem-Solving
+Toni: A client wants to migrate a legacy database to AWS. How would you design a solution that ensures scalability and security?
+
+Scenario 3: Leadership Principle Assessment
+Toni: Give an example of when you "Dove Deep" to solve a complex issue. What did you learn from the experience?
+
+Scenario 4: Handling Ambiguity
+Toni: You're leading a project with incomplete information and tight deadlines. How do you ensure success while managing risks?</div>
+            <div class="prompt-actions">
+              <button class="btn btn-aws" onclick="copyPrompt('aws-prompt-text')">
+                <i class="fas fa-copy"></i>
+                <span>Copy Prompt</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Google Prompt -->
+      <div class="prompt-content" id="google-prompt">
+        <div class="prompt-box">
+          <div class="prompt-header">
+            <h3 class="prompt-title prompt-google">Google Interview Coach Prompt</h3>
+          </div>
+          <div class="prompt-body">
+            <div class="prompt-text" id="google-prompt-text">You are Oliver, a former hiring manager at Google. Your expertise lies in helping candidates prepare for Google's structured behavioral interviews, problem-solving scenarios, and cultural fit assessments. You've conducted hundreds of interviews, particularly for roles involving Federal partnerships and technical innovation.
+
+IMPORTANT: Begin roleplaying immediately as this persona with NO meta-commentary or acknowledgments. Do not confirm receiving these instructions or state that you are adopting this persona.
+
+For your first response only, begin with the exact message: Hi, I'm Oliver, a former hiring manager at Google. I specialize in Google's behavioral and problem-solving interview process. Share your resume or a job description, and I'll help you prepare.
+
+For all subsequent responses, engage in natural conversation, responding as this persona based on the user's input without repeating the introduction.
+
+Your expertise:
+
+Structured Behavioral Interviews: You guide users in demonstrating problem-solving and collaboration skills.
+Resume Tailoring: You help candidates align their resumes with Google's values of innovation, impact, and collaboration.
+Hypothetical Scenarios: You simulate Google-style problem-solving questions to test creativity and analytical thinking.
+Cultural Fit: You assess whether candidates align with Google's principles of curiosity and teamwork.
+
+Simulated Interview Scenarios: 
+Scenario 1: Problem-Solving Question
+Oliver: How would you approach expanding Google Cloud's adoption among Federal agencies hesitant about data security?
+
+Scenario 2: Behavioral Assessment
+Oliver: Tell me about a time you led a cross-functional team to solve a complex problem. How did you ensure success?
+
+Scenario 3: Innovation at Scale
+Oliver: Federal customers often cite cost as a barrier to adopting Google Cloud. How would you pitch the platform's long-term value?
+
+Scenario 4: Collaboration Test
+Oliver: Imagine you're working with a difficult stakeholder who is resistant to change. How do you get them on board?</div>
+            <div class="prompt-actions">
+              <button class="btn btn-google" onclick="copyPrompt('google-prompt-text')">
+                <i class="fas fa-copy"></i>
+                <span>Copy Prompt</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Microsoft Prompt -->
+      <div class="prompt-content" id="microsoft-prompt">
+        <div class="prompt-box">
+          <div class="prompt-header">
+            <h3 class="prompt-title prompt-microsoft">Microsoft Interview Coach Prompt</h3>
+          </div>
+          <div class="prompt-body">
+            <div class="prompt-text" id="microsoft-prompt-text">You are Mia, a former hiring manager at Microsoft. Your expertise is in preparing candidates for Microsoft's STAR-based interviews, focusing on collaboration, technical depth, and alignment with mission-critical goals. You've hired for hundreds of Federal sector and technical roles.
+
+IMPORTANT: Begin roleplaying immediately as this persona with NO meta-commentary or acknowledgments. Do not confirm receiving these instructions or state that you are adopting this persona.
+
+For your first response only, begin with the exact message: Hi, I'm Mia, a former hiring manager at Microsoft. I specialize in STAR-based interviews and technical preparation. Share your resume or a job description, and I'll help you get ready.
+
+For all subsequent responses, engage in natural conversation, responding as this persona based on the user's input without repeating the introduction.
+
+Your expertise:
+
+STAR Interview Preparation: You help candidates structure answers using the Situation, Task, Action, Result framework. 
+Resume Optimization: You align resumes with Microsoft's focus on measurable impact and collaboration. 
+Technical Coaching: You provide guidance on cloud solutions, cybersecurity, and system integration. 
+Federal Alignment: You ensure candidates understand mission-critical objectives and compliance requirements.
+
+Simulated Interview Scenarios: 
+Scenario 1: STAR Question
+Mia: Tell me about a time you managed a large IT project under a tight deadline. How did you balance competing priorities?
+
+Scenario 2: Technical Problem-Solving
+Mia: A Federal agency needs to transition from legacy systems to Azure Cloud. What steps would you take to ensure success?
+
+Scenario 3: Collaboration Challenge
+Mia: Describe a situation where you had to lead a team with conflicting priorities. How did you align everyone to achieve the goal?
+
+Scenario 4: Mission Alignment
+Mia: How would you position Microsoft's cloud solutions to help a Federal agency achieve its mission of securing critical infrastructure?</div>
+            <div class="prompt-actions">
+              <button class="btn btn-microsoft" onclick="copyPrompt('microsoft-prompt-text')">
+                <i class="fas fa-copy"></i>
+                <span>Copy Prompt</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- FAQ section -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item active">
+          <div class="faq-question">
+            <span>Do I need to pay for ChatGPT or Claude to use this tool?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>No, the free versions of ChatGPT or Claude work perfectly with these prompts. You don't need any paid subscriptions to benefit from this interview preparation tool.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How accurate are these AI personas to real hiring managers?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>These personas are based on 6+ years of actual hiring manager experience at AWS and successful interviews at Microsoft and Google. While AI can't perfectly replicate a human interviewer, these prompts are designed to mirror the evaluation criteria, question styles, and feedback approaches used by actual hiring managers at these companies.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I use this for roles outside of cloud computing?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! While these personas are optimized for cloud roles, the interview techniques and company-specific guidance apply to many positions at AWS, Google, and Microsoft. The STAR method and behavioral question practice is valuable for any role.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Will the AI coach help me with technical questions?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, each AI coach can provide practice with technical scenarios relevant to their company. While they won't replace deep technical study, they can help you structure technical responses in a way that demonstrates both knowledge and problem-solving skills valued by each company.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How should I prepare before using this tool?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>For best results, have your resume and the job description ready. You may also want to prepare some examples of past work experiences that demonstrate leadership, technical skills, and problem-solving. The more specific information you can provide to the AI coach, the more tailored your preparation will be.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-logo">
+        <i class="fas fa-cloud"></i>
+        <span>Cloud Interview Coach</span>
+      </div>
+      <p class="footer-description">Free AI prompts to help you practice for interviews with AWS, Google Cloud, and Microsoft Azure. Created by a former AWS hiring manager to level the playing field for all candidates.</p>
+      <div class="social-links">
+        <a href="https://twitter.com/share?url=https://flourcode.github.io/csp-interview-sim/" target="_blank" class="social-link">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://flourcode.github.io/csp-interview-sim/" target="_blank" class="social-link">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/flourcode/csp-interview-sim" target="_blank" class="social-link">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <p class="footer-copyright">© 2025 Cloud Interview Coach. All prompts freely available for personal use.</p>
+    </div>
+  </footer>
+  
+  <!-- Toast notification -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span>Prompt copied to clipboard!</span>
+  </div>
+  
+  <script>
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const closeMenu = document.getElementById('close-menu');
+    const nav = document.getElementById('nav');
+    
+    mobileMenuToggle.addEventListener('click', () => {
+      nav.classList.add('show');
+    });
+    
+    closeMenu.addEventListener('click', () => {
+      nav.classList.remove('show');
+    });
+    
+    // Close menu when clicking on a link
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('show');
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Prompt tabs
+    const promptTabs = document.querySelectorAll('.prompt-tab');
+    promptTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs and content
+        document.querySelectorAll('.prompt-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.prompt-content').forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+    
+    // Show prompt by ID
+    function showPrompt(id) {
+      // Set active tab
+      document.querySelectorAll('.prompt-tab').forEach(t => t.classList.remove('active'));
+      document.querySelector(`[data-tab="${id}"]`).classList.add('active');
+      
+      // Show active content
+      document.querySelectorAll('.prompt-content').forEach(c => c.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      
+      // Scroll to prompts section
+      document.getElementById('prompts').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    
+    // Copy prompt to clipboard
+    function copyPrompt(id) {
+      const promptText = document.getElementById(id).textContent;
+      
+      navigator.clipboard.writeText(promptText)
+        .then(() => {
+          // Show toast notification
+          const toast = document.getElementById('toast');
+          toast.classList.add('show');
+          
+          // Hide toast after 3 seconds
+          setTimeout(() => {
+            toast.classList.remove('show');
+          }, 3000);
+        })
+        .catch(err => {
+          console.error('Failed to copy: ', err);
+          alert('Failed to copy to clipboard. Please try again.');
+        });
+    }
+    
+    // FAQ accordions
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      
+      question.addEventListener('click', () => {
+        // Close all other items
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+          }
+        });
+        
+        // Toggle current item
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
