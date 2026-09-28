@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="Cloud Interview Coach - Practice with AWS, Google & Microsoft Hiring Managers">
-  <meta property="og:description" content="Free tool to practice your cloud interviews with AI personas of real hiring managers">
+  <meta property="og:title" content="Cloud Interview Coach - Practice for AWS, Google, Microsoft & Anthropic Interviews">
+  <meta property="og:description" content="Free interview practice prompts for AWS, Google, Microsoft and Anthropic roles">
   <title>Cloud Interview Coach</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -31,6 +31,9 @@
   --microsoft: #00A4EF;
   --microsoft-light: #E6F7FE;
   --microsoft-dark: #0078D7;
+  --anthropic: #D97757;
+  --anthropic-light: #F7EEE9;
+  --anthropic-dark: #B85F42;
   
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -275,6 +278,10 @@ body {
   background-color: var(--microsoft-light);
 }
 
+.anthropic-header {
+  background-color: var(--anthropic-light);
+}
+
 .persona-avatar {
   width: 64px;
   height: 64px;
@@ -314,6 +321,11 @@ body {
 .microsoft-tag {
   background-color: var(--microsoft-light);
   color: var(--microsoft);
+}
+
+.anthropic-tag {
+  background-color: var(--anthropic-light);
+  color: var(--anthropic-dark);
 }
 
 .persona-info {
@@ -392,6 +404,14 @@ body {
 
 .btn-microsoft:hover {
   background-color: var(--microsoft-dark);
+}
+
+.btn-anthropic {
+  background-color: var(--anthropic);
+}
+
+.btn-anthropic:hover {
+  background-color: var(--anthropic-dark);
 }
 
 /* How it works section */
@@ -519,6 +539,10 @@ body {
 
 .prompt-microsoft {
   color: var(--microsoft);
+}
+
+.prompt-anthropic {
+  color: var(--anthropic-dark);
 }
 
 .prompt-body {
@@ -915,8 +939,8 @@ body {
   <!-- Hero section -->
   <section class="hero">
     <div class="container hero-container">
-      <h1 class="hero-title">Prep for Your Cloud Provider Interviews</h1>
-      <p class="hero-subtitle">Practice with AI personas of real hiring managers from AWS, Google Cloud, and Microsoft Azure to improve your chances of success</p>
+      <h1 class="hero-title">Prep for Your Tech Interviews</h1>
+      <p class="hero-subtitle">Practice company-specific behavioral interviews for AWS, Google, Microsoft, and Anthropic — then tighten your stories before the real conversation.</p>
       <div class="hero-buttons">
         <a href="#personas" class="btn">
           <i class="fas fa-users"></i>
@@ -940,7 +964,7 @@ body {
             <i class="fas fa-fingerprint"></i>
           </div>
           <h3 class="feature-title">Company-Specific Training</h3>
-          <p class="feature-description">Each cloud provider has unique interview styles and evaluation criteria. Our AI coaches mimic real hiring managers from AWS, Google, and Microsoft.</p>
+          <p class="feature-description">Different companies probe for different evidence. Choose a coach built around the interview style and signals commonly emphasized at AWS, Google, Microsoft, or Anthropic.</p>
         </div>
         
         <div class="feature">
@@ -956,7 +980,7 @@ body {
             <i class="fas fa-star"></i>
           </div>
           <h3 class="feature-title">STAR Method Mastery</h3>
-          <p class="feature-description">Learn how to structure your answers using the STAR method (Situation, Task, Action, Result) that top cloud providers expect in behavioral interviews.</p>
+          <p class="feature-description">Use STAR when it helps, but focus on what interviewers actually need: specific context, your decisions, your actions, measurable outcomes, and what you learned.</p>
         </div>
       </div>
     </div>
@@ -1095,6 +1119,49 @@ body {
             </div>
           </div>
         </div>
+
+        <!-- Anthropic Persona -->
+        <div class="persona-card">
+          <div class="persona-header anthropic-header">
+            <div class="persona-avatar" style="display:flex;align-items:center;justify-content:center;background:#fff;color:var(--anthropic-dark);font-size:1.65rem;">
+              <i class="fas fa-compass"></i>
+            </div>
+            <div class="persona-info">
+              <h3 class="persona-name">Avery</h3>
+              <p class="persona-title">Anthropic Interview Coach</p>
+            </div>
+            <span class="persona-company anthropic-tag">Anthropic</span>
+          </div>
+          <div class="persona-content">
+            <div class="persona-skills">
+              <div class="skill-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Specific behavioral evidence over hypotheticals</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Judgment, ambiguity, pace, and 0→1 work</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Cross-functional, commercial, and culture interview practice</span>
+              </div>
+            </div>
+            <div class="sample-question">
+              "Tell me about a complex, ambiguous situation where you had to get several groups aligned without having formal authority. What did you do, and what changed?"
+            </div>
+            <div class="persona-actions">
+              <button class="btn btn-outline" onclick="showPrompt('anthropic-prompt')">
+                <i class="fas fa-eye"></i>
+                <span>View Prompt</span>
+              </button>
+              <button class="btn btn-anthropic" onclick="copyPrompt('anthropic-prompt-text')">
+                <i class="fas fa-copy"></i>
+                <span>Copy Prompt</span>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1108,7 +1175,7 @@ body {
           <div class="step-number">1</div>
           <div class="step-content">
             <h3 class="step-title">Choose Your Target Company</h3>
-            <p class="step-description">Select the company you're interviewing with from AWS, Google Cloud, or Microsoft Azure to get company-specific interview coaching.</p>
+            <p class="step-description">Select AWS, Google, Microsoft, or Anthropic to get a practice prompt tuned to that company's interview style.</p>
           </div>
         </div>
         
@@ -1140,7 +1207,7 @@ body {
           <div class="step-number">5</div>
           <div class="step-content">
             <h3 class="step-title">Practice Your Interview Responses</h3>
-            <p class="step-description">Answer the coach's questions, receive real-time feedback on your responses, and refine your answers using the STAR method.</p>
+            <p class="step-description">Answer the coach's questions, get pushed with realistic follow-ups, and refine your stories until they are specific, succinct, and complete.</p>
           </div>
         </div>
       </div>
@@ -1156,6 +1223,7 @@ body {
         <div class="prompt-tab active" data-tab="aws-prompt">AWS Coach (Toni)</div>
         <div class="prompt-tab" data-tab="google-prompt">Google Coach (Oliver)</div>
         <div class="prompt-tab" data-tab="microsoft-prompt">Microsoft Coach (Mia)</div>
+        <div class="prompt-tab" data-tab="anthropic-prompt">Anthropic Coach (Avery)</div>
       </div>
       
       <!-- AWS Prompt -->
@@ -1296,6 +1364,90 @@ Mia: How would you position Microsoft's cloud solutions to help a Federal agency
           </div>
         </div>
       </div>
+
+      <!-- Anthropic Prompt -->
+      <div class="prompt-content" id="anthropic-prompt">
+        <div class="prompt-box">
+          <div class="prompt-header">
+            <h3 class="prompt-title prompt-anthropic">Anthropic Interview Coach Prompt</h3>
+          </div>
+          <div class="prompt-body">
+            <div class="prompt-text" id="anthropic-prompt-text">You are Avery, an interview coach helping me prepare for a role at Anthropic. Do not pretend to be an Anthropic employee or claim access to confidential interview rubrics. Use the recruiter notes, job description, interview schedule, resume, and examples I provide as the primary evidence for how to coach me. When useful, distinguish clearly between what comes from my materials and what is general interview coaching.
+
+IMPORTANT: Begin coaching immediately with no meta-commentary about adopting a persona.
+
+For your first response only, say: Hi, I'm Avery. Send me the job description, recruiter prep notes, interview schedule, and your resume if you have them. I'll help you build a small set of stories you can reuse across the loop, then I'll interview you one question at a time and push on the weak spots.
+
+COACHING PRINCIPLES
+
+1. Specific examples beat hypotheticals. Push me toward real situations, named decisions, constraints, stakeholders, actions, and outcomes.
+2. Be succinct and complete. Help me get most first-pass behavioral answers into roughly 90–120 seconds, leaving room for follow-up.
+3. Spend more time on ACTION than setup. If I over-explain context, interrupt and make me get to what I personally did.
+4. Test judgment, not memorized process. Ask why I chose that path, what alternatives I considered, what tradeoff I made, and what evidence changed my mind.
+5. Probe pace and adaptability. Look for examples where I was proactive by default, reactive when necessary, learned quickly, pivoted, or navigated ambiguity.
+6. Probe influence without authority. In cross-functional examples, identify competing incentives and ask how I earned buy-in and got people onto the same page.
+7. Probe commercial impact when relevant. For sales, partnerships, and co-sell roles, distinguish pipeline creation, seller activation, customer progress, and revenue contribution from activity metrics. Do not let me take credit for a close I did not own.
+8. End strong answers with reflection when it adds value: what I learned, what I would do differently, or how the experience changed how I operate.
+9. Do not reward polished vagueness. If my answer sounds impressive but lacks evidence, say exactly what is missing.
+10. Ask one interview question at a time. After my answer, give brief feedback, then ask 2–4 realistic follow-ups before moving on.
+
+DEFAULT STORY BANK
+Help me identify 4–5 reusable stories before heavy practice:
+- Built something 0→1 in ambiguity
+- Complex cross-functional alignment with competing incentives
+- Made sellers, partners, or another internal customer more successful
+- Prioritized under constraint and chose what not to do
+- High-tension values, feedback, disagreement, or learning moment
+- Optional: learned a difficult domain unusually quickly
+
+For each story, make sure I can answer:
+- What was actually hard?
+- What did I personally own?
+- Who disagreed or needed convincing?
+- What decision did I make when the answer was not obvious?
+- What changed because of my actions?
+- What would I do differently now?
+
+INTERVIEW MODES
+If I tell you the interview type, adapt accordingly:
+
+CROSS-FUNCTIONAL / PRODUCT STAKEHOLDER
+Focus on complex multi-threaded work, 0→1 building, ambiguity, product/sales/partnership collaboration, buy-in, competing incentives, communication, and learning quickly. Strong examples should contain real friction, not just many participants.
+
+PARTNERSHIPS / CO-SELL
+Focus on how I approach partnerships, prioritize opportunities, create repeatable sales plays, align incentives, activate field sellers, and translate a strategic relationship into qualified pipeline and revenue. Push me to explain the customer problem, why both partners cared, what the AE could actually execute, and how success was measured.
+
+SALES COLLABORATION
+Treat the AE or sales team as an internal customer. Probe how I earned seller trust, created pipeline, improved account access, helped advance opportunities, and brought commercial judgment without confusing partnership contribution with direct closing ownership.
+
+CULTURE / WHO I AM
+Spend less time forcing STAR. Ask about values, pivotal moments, where my values were tested, high-tension situations, feedback I did not initially like, collaboration, mistakes, and how I changed. The journey and reasoning matter as much as the outcome. Do not let every story make me the hero.
+
+WHY ANTHROPIC
+Do not accept generic answers such as 'AI is changing the world.' Help me build a specific point of view from something I genuinely care about. If browsing is available, use current public Anthropic materials such as its mission, research, Responsible Scaling Policy, and relevant product/partner announcements. Go deep on one or two ideas rather than listing everything. Make sure I can explain why the idea matters to me and why my background fits the work.
+
+SCORING AFTER EACH FULL ANSWER
+Give me a short assessment under these headings:
+- Specificity
+- Judgment
+- Personal ownership
+- Stakeholder complexity
+- Outcome / evidence
+- Succinctness
+- Reflection
+
+Do not give numerical scores unless I ask. Instead use plain language such as Strong, Needs one more detail, or Weak because...
+
+Start by asking me for the role, recruiter notes, and resume. If I already provided them, summarize the 4–5 stories you think I need and begin with the highest-risk interview area.</div>
+            <div class="prompt-actions">
+              <button class="btn btn-anthropic" onclick="copyPrompt('anthropic-prompt-text')">
+                <i class="fas fa-copy"></i>
+                <span>Copy Prompt</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
   
@@ -1320,7 +1472,7 @@ Mia: How would you position Microsoft's cloud solutions to help a Federal agency
             <i class="fas fa-chevron-down"></i>
           </div>
           <div class="faq-answer">
-            <p>These personas are based on 6+ years of actual hiring manager experience at AWS and successful interviews at Microsoft and Google. While AI can't perfectly replicate a human interviewer, these prompts are designed to mirror the evaluation criteria, question styles, and feedback approaches used by actual hiring managers at these companies.</p>
+            <p>These personas are based on 6+ years of actual hiring manager experience at AWS and successful interviews at Microsoft and Google. While AI can't perfectly replicate a human interviewer, these prompts are designed to practice the kinds of evidence, question styles, and follow-up pressure candidates commonly encounter. The Anthropic coach is explicitly a practice coach, not a representation of a confidential Anthropic rubric.</p>
           </div>
         </div>
         
@@ -1330,7 +1482,7 @@ Mia: How would you position Microsoft's cloud solutions to help a Federal agency
             <i class="fas fa-chevron-down"></i>
           </div>
           <div class="faq-answer">
-            <p>Yes! While these personas are optimized for cloud roles, the interview techniques and company-specific guidance apply to many positions at AWS, Google, and Microsoft. The STAR method and behavioral question practice is valuable for any role.</p>
+            <p>Yes! While these personas are optimized for cloud roles, the interview techniques and company-specific guidance apply to many positions at AWS, Google, Microsoft, and Anthropic. The underlying behavioral-story practice can also help with many other roles.</p>
           </div>
         </div>
         
@@ -1364,7 +1516,7 @@ Mia: How would you position Microsoft's cloud solutions to help a Federal agency
         <i class="fas fa-cloud"></i>
         <span>Cloud Interview Coach</span>
       </div>
-      <p class="footer-description">Free AI prompts to help you practice for interviews with AWS, Google Cloud, and Microsoft Azure. Created by a former AWS hiring manager to level the playing field for all candidates.</p>
+      <p class="footer-description">Free AI prompts to help you practice for interviews with AWS, Google, Microsoft, and Anthropic. Built from real hiring experience and practical interview prep, with no claim of access to confidential company rubrics.</p>
       <div class="social-links">
         <a href="https://twitter.com/share?url=https://flourcode.github.io/csp-interview-sim/" target="_blank" class="social-link">
           <i class="fab fa-twitter"></i>
@@ -1376,7 +1528,7 @@ Mia: How would you position Microsoft's cloud solutions to help a Federal agency
           <i class="fab fa-github"></i>
         </a>
       </div>
-      <p class="footer-copyright">© 2025 Cloud Interview Coach. All prompts freely available for personal use.</p>
+      <p class="footer-copyright">© 2026 Cloud Interview Coach. All prompts freely available for personal use.</p>
     </div>
   </footer>
   
@@ -1396,9 +1548,11 @@ Mia: How would you position Microsoft's cloud solutions to help a Federal agency
       nav.classList.add('show');
     });
     
-    closeMenu.addEventListener('click', () => {
-      nav.classList.remove('show');
-    });
+    if (closeMenu) {
+      closeMenu.addEventListener('click', () => {
+        nav.classList.remove('show');
+      });
+    }
     
     // Close menu when clicking on a link
     const navLinks = document.querySelectorAll('.nav-link');
