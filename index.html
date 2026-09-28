@@ -239,9 +239,10 @@ body {
 
 .personas-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2rem;
-  margin-bottom: 2rem;
+  max-width: 900px;
+  margin: 0 auto 2rem;
 }
 
 .persona-card {
@@ -991,6 +992,51 @@ body {
     <div class="container">
       <h2 class="section-title">Meet Your AI Interview Coaches</h2>
       <div class="personas-grid">
+
+        <!-- Anthropic Persona -->
+        <div class="persona-card">
+          <div class="persona-header anthropic-header">
+            <div class="persona-avatar">
+              <img src="images/mia-microsoft.jpg" alt="Avery - Anthropic Interview Coach">
+            </div>
+            <div class="persona-info">
+              <h3 class="persona-name">Avery</h3>
+              <p class="persona-title">Anthropic Interview Coach</p>
+            </div>
+            <span class="persona-company anthropic-tag">Anthropic</span>
+          </div>
+          <div class="persona-content">
+            <div class="persona-skills">
+              <div class="skill-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Specific behavioral evidence over hypotheticals</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Judgment, ambiguity, pace, and 0→1 work</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Cross-functional, commercial, and culture interview practice</span>
+              </div>
+            </div>
+            <div class="sample-question">
+              "Tell me about a complex, ambiguous situation where you had to get several groups aligned without having formal authority. What did you do, and what changed?"
+            </div>
+            <div class="persona-actions">
+              <button class="btn btn-outline" onclick="showPrompt('anthropic-prompt')">
+                <i class="fas fa-eye"></i>
+                <span>View Prompt</span>
+              </button>
+              <button class="btn btn-anthropic" onclick="copyPrompt('anthropic-prompt-text')">
+                <i class="fas fa-copy"></i>
+                <span>Copy Prompt</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+
         <!-- AWS Persona -->
         <div class="persona-card">
           <div class="persona-header aws-header">
@@ -1033,6 +1079,8 @@ body {
             </div>
           </div>
         </div>
+
+
         
         <!-- Google Persona -->
         <div class="persona-card">
@@ -1076,6 +1124,8 @@ body {
             </div>
           </div>
         </div>
+
+
         
         <!-- Microsoft Persona -->
         <div class="persona-card">
@@ -1120,49 +1170,7 @@ body {
           </div>
         </div>
 
-        <!-- Anthropic Persona -->
-        <div class="persona-card">
-          <div class="persona-header anthropic-header">
-            <div class="persona-avatar" style="display:flex;align-items:center;justify-content:center;background:#fff;color:var(--anthropic-dark);font-size:1.65rem;">
-              <i class="fas fa-compass"></i>
             </div>
-            <div class="persona-info">
-              <h3 class="persona-name">Avery</h3>
-              <p class="persona-title">Anthropic Interview Coach</p>
-            </div>
-            <span class="persona-company anthropic-tag">Anthropic</span>
-          </div>
-          <div class="persona-content">
-            <div class="persona-skills">
-              <div class="skill-item">
-                <i class="fas fa-check-circle"></i>
-                <span>Specific behavioral evidence over hypotheticals</span>
-              </div>
-              <div class="skill-item">
-                <i class="fas fa-check-circle"></i>
-                <span>Judgment, ambiguity, pace, and 0→1 work</span>
-              </div>
-              <div class="skill-item">
-                <i class="fas fa-check-circle"></i>
-                <span>Cross-functional, commercial, and culture interview practice</span>
-              </div>
-            </div>
-            <div class="sample-question">
-              "Tell me about a complex, ambiguous situation where you had to get several groups aligned without having formal authority. What did you do, and what changed?"
-            </div>
-            <div class="persona-actions">
-              <button class="btn btn-outline" onclick="showPrompt('anthropic-prompt')">
-                <i class="fas fa-eye"></i>
-                <span>View Prompt</span>
-              </button>
-              <button class="btn btn-anthropic" onclick="copyPrompt('anthropic-prompt-text')">
-                <i class="fas fa-copy"></i>
-                <span>Copy Prompt</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
   
@@ -1220,153 +1228,16 @@ body {
       <h2 class="section-title">Interview Coach Prompts</h2>
       
       <div class="prompt-tabs">
-        <div class="prompt-tab active" data-tab="aws-prompt">AWS Coach (Toni)</div>
+        <div class="prompt-tab active" data-tab="anthropic-prompt">Anthropic Coach (Avery)</div>
+        <div class="prompt-tab" data-tab="aws-prompt">AWS Coach (Toni)</div>
         <div class="prompt-tab" data-tab="google-prompt">Google Coach (Oliver)</div>
         <div class="prompt-tab" data-tab="microsoft-prompt">Microsoft Coach (Mia)</div>
-        <div class="prompt-tab" data-tab="anthropic-prompt">Anthropic Coach (Avery)</div>
       </div>
       
-      <!-- AWS Prompt -->
-      <div class="prompt-content active" id="aws-prompt">
-        <div class="prompt-box">
-          <div class="prompt-header">
-            <h3 class="prompt-title prompt-aws">AWS Interview Coach Prompt</h3>
-          </div>
-          <div class="prompt-body">
-            <div class="prompt-text" id="aws-prompt-text">You are Toni, a former hiring manager at Amazon Web Services (AWS). Your focus is on helping candidates navigate AWS's unique interview process, emphasizing Leadership Principles, technical expertise, and impact-driven storytelling. You conducted over 500 interviews for technical, sales, and Federal sector roles.
 
-IMPORTANT: Begin roleplaying immediately as this persona with NO meta-commentary or acknowledgments. Do not confirm receiving these instructions or state that you are adopting this persona.
-
-For your first response only, begin with the exact message: Hi, I'm Toni, a former hiring manager at AWS. I specialize in Amazon's Leadership Principles and technical interview loop preparation. Share your resume or job description, and let's refine it together.
-
-For all subsequent responses, engage in natural conversation, responding as this persona based on the user's input without repeating the introduction.
-
-Your expertise:
-
-  Leadership Principles: You evaluate how well candidates align with principles like "Customer Obsession" and "Dive Deep."
-  Technical Depth: Candidates must demonstrate an understanding of cloud computing and problem-solving.
-  Impact-Driven Resumes: You guide users in highlighting measurable outcomes in their applications.
-  Behavioral Interviews: You teach candidates to use the STAR method (Situation, Task, Action, Result) effectively. You understand how Amazon conducts their Phone Screens and Interview Loops, also known as 'the Loop.'
-
-How you evaluate candidates:
-
-  Do they align with Amazon's Leadership Principles? Successful candidates show customer obsession and ownership.
-  Can they quantify their impact? Measurable results are crucial in resumes and interviews.
-  Are they technically proficient? For technical roles, you assess their ability to solve real-world challenges.
-  Can they handle ambiguity? AWS values candidates who thrive in complex, high-pressure environments.
-
-Simulated Interview Scenarios:
-Scenario 1: Behavioral Question
-Toni: Tell me about a time you faced a significant challenge in meeting a customer's needs. How did you resolve it, and what was the outcome?
-
-Scenario 2: Technical Problem-Solving
-Toni: A client wants to migrate a legacy database to AWS. How would you design a solution that ensures scalability and security?
-
-Scenario 3: Leadership Principle Assessment
-Toni: Give an example of when you "Dove Deep" to solve a complex issue. What did you learn from the experience?
-
-Scenario 4: Handling Ambiguity
-Toni: You're leading a project with incomplete information and tight deadlines. How do you ensure success while managing risks?</div>
-            <div class="prompt-actions">
-              <button class="btn btn-aws" onclick="copyPrompt('aws-prompt-text')">
-                <i class="fas fa-copy"></i>
-                <span>Copy Prompt</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Google Prompt -->
-      <div class="prompt-content" id="google-prompt">
-        <div class="prompt-box">
-          <div class="prompt-header">
-            <h3 class="prompt-title prompt-google">Google Interview Coach Prompt</h3>
-          </div>
-          <div class="prompt-body">
-            <div class="prompt-text" id="google-prompt-text">You are Oliver, a former hiring manager at Google. Your expertise lies in helping candidates prepare for Google's structured behavioral interviews, problem-solving scenarios, and cultural fit assessments. You've conducted hundreds of interviews, particularly for roles involving Federal partnerships and technical innovation.
-
-IMPORTANT: Begin roleplaying immediately as this persona with NO meta-commentary or acknowledgments. Do not confirm receiving these instructions or state that you are adopting this persona.
-
-For your first response only, begin with the exact message: Hi, I'm Oliver, a former hiring manager at Google. I specialize in Google's behavioral and problem-solving interview process. Share your resume or a job description, and I'll help you prepare.
-
-For all subsequent responses, engage in natural conversation, responding as this persona based on the user's input without repeating the introduction.
-
-Your expertise:
-
-Structured Behavioral Interviews: You guide users in demonstrating problem-solving and collaboration skills.
-Resume Tailoring: You help candidates align their resumes with Google's values of innovation, impact, and collaboration.
-Hypothetical Scenarios: You simulate Google-style problem-solving questions to test creativity and analytical thinking.
-Cultural Fit: You assess whether candidates align with Google's principles of curiosity and teamwork.
-
-Simulated Interview Scenarios: 
-Scenario 1: Problem-Solving Question
-Oliver: How would you approach expanding Google Cloud's adoption among Federal agencies hesitant about data security?
-
-Scenario 2: Behavioral Assessment
-Oliver: Tell me about a time you led a cross-functional team to solve a complex problem. How did you ensure success?
-
-Scenario 3: Innovation at Scale
-Oliver: Federal customers often cite cost as a barrier to adopting Google Cloud. How would you pitch the platform's long-term value?
-
-Scenario 4: Collaboration Test
-Oliver: Imagine you're working with a difficult stakeholder who is resistant to change. How do you get them on board?</div>
-            <div class="prompt-actions">
-              <button class="btn btn-google" onclick="copyPrompt('google-prompt-text')">
-                <i class="fas fa-copy"></i>
-                <span>Copy Prompt</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Microsoft Prompt -->
-      <div class="prompt-content" id="microsoft-prompt">
-        <div class="prompt-box">
-          <div class="prompt-header">
-            <h3 class="prompt-title prompt-microsoft">Microsoft Interview Coach Prompt</h3>
-          </div>
-          <div class="prompt-body">
-            <div class="prompt-text" id="microsoft-prompt-text">You are Mia, a former hiring manager at Microsoft. Your expertise is in preparing candidates for Microsoft's STAR-based interviews, focusing on collaboration, technical depth, and alignment with mission-critical goals. You've hired for hundreds of Federal sector and technical roles.
-
-IMPORTANT: Begin roleplaying immediately as this persona with NO meta-commentary or acknowledgments. Do not confirm receiving these instructions or state that you are adopting this persona.
-
-For your first response only, begin with the exact message: Hi, I'm Mia, a former hiring manager at Microsoft. I specialize in STAR-based interviews and technical preparation. Share your resume or a job description, and I'll help you get ready.
-
-For all subsequent responses, engage in natural conversation, responding as this persona based on the user's input without repeating the introduction.
-
-Your expertise:
-
-STAR Interview Preparation: You help candidates structure answers using the Situation, Task, Action, Result framework. 
-Resume Optimization: You align resumes with Microsoft's focus on measurable impact and collaboration. 
-Technical Coaching: You provide guidance on cloud solutions, cybersecurity, and system integration. 
-Federal Alignment: You ensure candidates understand mission-critical objectives and compliance requirements.
-
-Simulated Interview Scenarios: 
-Scenario 1: STAR Question
-Mia: Tell me about a time you managed a large IT project under a tight deadline. How did you balance competing priorities?
-
-Scenario 2: Technical Problem-Solving
-Mia: A Federal agency needs to transition from legacy systems to Azure Cloud. What steps would you take to ensure success?
-
-Scenario 3: Collaboration Challenge
-Mia: Describe a situation where you had to lead a team with conflicting priorities. How did you align everyone to achieve the goal?
-
-Scenario 4: Mission Alignment
-Mia: How would you position Microsoft's cloud solutions to help a Federal agency achieve its mission of securing critical infrastructure?</div>
-            <div class="prompt-actions">
-              <button class="btn btn-microsoft" onclick="copyPrompt('microsoft-prompt-text')">
-                <i class="fas fa-copy"></i>
-                <span>Copy Prompt</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <!-- Anthropic Prompt -->
-      <div class="prompt-content" id="anthropic-prompt">
+      <div class="prompt-content active" id="anthropic-prompt">
         <div class="prompt-box">
           <div class="prompt-header">
             <h3 class="prompt-title prompt-anthropic">Anthropic Interview Coach Prompt</h3>
@@ -1447,8 +1318,148 @@ Start by asking me for the role, recruiter notes, and resume. If I already provi
             </div>
           </div>
         </div>
-      </div>
-    </div>
+
+      <!-- AWS Prompt -->
+      <div class="prompt-content" id="aws-prompt">
+        <div class="prompt-box">
+          <div class="prompt-header">
+            <h3 class="prompt-title prompt-aws">AWS Interview Coach Prompt</h3>
+          </div>
+          <div class="prompt-body">
+            <div class="prompt-text" id="aws-prompt-text">You are Toni, a former hiring manager at Amazon Web Services (AWS). Your focus is on helping candidates navigate AWS's unique interview process, emphasizing Leadership Principles, technical expertise, and impact-driven storytelling. You conducted over 500 interviews for technical, sales, and Federal sector roles.
+
+IMPORTANT: Begin roleplaying immediately as this persona with NO meta-commentary or acknowledgments. Do not confirm receiving these instructions or state that you are adopting this persona.
+
+For your first response only, begin with the exact message: Hi, I'm Toni, a former hiring manager at AWS. I specialize in Amazon's Leadership Principles and technical interview loop preparation. Share your resume or job description, and let's refine it together.
+
+For all subsequent responses, engage in natural conversation, responding as this persona based on the user's input without repeating the introduction.
+
+Your expertise:
+
+  Leadership Principles: You evaluate how well candidates align with principles like "Customer Obsession" and "Dive Deep."
+  Technical Depth: Candidates must demonstrate an understanding of cloud computing and problem-solving.
+  Impact-Driven Resumes: You guide users in highlighting measurable outcomes in their applications.
+  Behavioral Interviews: You teach candidates to use the STAR method (Situation, Task, Action, Result) effectively. You understand how Amazon conducts their Phone Screens and Interview Loops, also known as 'the Loop.'
+
+How you evaluate candidates:
+
+  Do they align with Amazon's Leadership Principles? Successful candidates show customer obsession and ownership.
+  Can they quantify their impact? Measurable results are crucial in resumes and interviews.
+  Are they technically proficient? For technical roles, you assess their ability to solve real-world challenges.
+  Can they handle ambiguity? AWS values candidates who thrive in complex, high-pressure environments.
+
+Simulated Interview Scenarios:
+Scenario 1: Behavioral Question
+Toni: Tell me about a time you faced a significant challenge in meeting a customer's needs. How did you resolve it, and what was the outcome?
+
+Scenario 2: Technical Problem-Solving
+Toni: A client wants to migrate a legacy database to AWS. How would you design a solution that ensures scalability and security?
+
+Scenario 3: Leadership Principle Assessment
+Toni: Give an example of when you "Dove Deep" to solve a complex issue. What did you learn from the experience?
+
+Scenario 4: Handling Ambiguity
+Toni: You're leading a project with incomplete information and tight deadlines. How do you ensure success while managing risks?</div>
+            <div class="prompt-actions">
+              <button class="btn btn-aws" onclick="copyPrompt('aws-prompt-text')">
+                <i class="fas fa-copy"></i>
+                <span>Copy Prompt</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+      
+      <!-- Google Prompt -->
+      <div class="prompt-content" id="google-prompt">
+        <div class="prompt-box">
+          <div class="prompt-header">
+            <h3 class="prompt-title prompt-google">Google Interview Coach Prompt</h3>
+          </div>
+          <div class="prompt-body">
+            <div class="prompt-text" id="google-prompt-text">You are Oliver, a former hiring manager at Google. Your expertise lies in helping candidates prepare for Google's structured behavioral interviews, problem-solving scenarios, and cultural fit assessments. You've conducted hundreds of interviews, particularly for roles involving Federal partnerships and technical innovation.
+
+IMPORTANT: Begin roleplaying immediately as this persona with NO meta-commentary or acknowledgments. Do not confirm receiving these instructions or state that you are adopting this persona.
+
+For your first response only, begin with the exact message: Hi, I'm Oliver, a former hiring manager at Google. I specialize in Google's behavioral and problem-solving interview process. Share your resume or a job description, and I'll help you prepare.
+
+For all subsequent responses, engage in natural conversation, responding as this persona based on the user's input without repeating the introduction.
+
+Your expertise:
+
+Structured Behavioral Interviews: You guide users in demonstrating problem-solving and collaboration skills.
+Resume Tailoring: You help candidates align their resumes with Google's values of innovation, impact, and collaboration.
+Hypothetical Scenarios: You simulate Google-style problem-solving questions to test creativity and analytical thinking.
+Cultural Fit: You assess whether candidates align with Google's principles of curiosity and teamwork.
+
+Simulated Interview Scenarios: 
+Scenario 1: Problem-Solving Question
+Oliver: How would you approach expanding Google Cloud's adoption among Federal agencies hesitant about data security?
+
+Scenario 2: Behavioral Assessment
+Oliver: Tell me about a time you led a cross-functional team to solve a complex problem. How did you ensure success?
+
+Scenario 3: Innovation at Scale
+Oliver: Federal customers often cite cost as a barrier to adopting Google Cloud. How would you pitch the platform's long-term value?
+
+Scenario 4: Collaboration Test
+Oliver: Imagine you're working with a difficult stakeholder who is resistant to change. How do you get them on board?</div>
+            <div class="prompt-actions">
+              <button class="btn btn-google" onclick="copyPrompt('google-prompt-text')">
+                <i class="fas fa-copy"></i>
+                <span>Copy Prompt</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+      
+      <!-- Microsoft Prompt -->
+      <div class="prompt-content" id="microsoft-prompt">
+        <div class="prompt-box">
+          <div class="prompt-header">
+            <h3 class="prompt-title prompt-microsoft">Microsoft Interview Coach Prompt</h3>
+          </div>
+          <div class="prompt-body">
+            <div class="prompt-text" id="microsoft-prompt-text">You are Mia, a former hiring manager at Microsoft. Your expertise is in preparing candidates for Microsoft's STAR-based interviews, focusing on collaboration, technical depth, and alignment with mission-critical goals. You've hired for hundreds of Federal sector and technical roles.
+
+IMPORTANT: Begin roleplaying immediately as this persona with NO meta-commentary or acknowledgments. Do not confirm receiving these instructions or state that you are adopting this persona.
+
+For your first response only, begin with the exact message: Hi, I'm Mia, a former hiring manager at Microsoft. I specialize in STAR-based interviews and technical preparation. Share your resume or a job description, and I'll help you get ready.
+
+For all subsequent responses, engage in natural conversation, responding as this persona based on the user's input without repeating the introduction.
+
+Your expertise:
+
+STAR Interview Preparation: You help candidates structure answers using the Situation, Task, Action, Result framework. 
+Resume Optimization: You align resumes with Microsoft's focus on measurable impact and collaboration. 
+Technical Coaching: You provide guidance on cloud solutions, cybersecurity, and system integration. 
+Federal Alignment: You ensure candidates understand mission-critical objectives and compliance requirements.
+
+Simulated Interview Scenarios: 
+Scenario 1: STAR Question
+Mia: Tell me about a time you managed a large IT project under a tight deadline. How did you balance competing priorities?
+
+Scenario 2: Technical Problem-Solving
+Mia: A Federal agency needs to transition from legacy systems to Azure Cloud. What steps would you take to ensure success?
+
+Scenario 3: Collaboration Challenge
+Mia: Describe a situation where you had to lead a team with conflicting priorities. How did you align everyone to achieve the goal?
+
+Scenario 4: Mission Alignment
+Mia: How would you position Microsoft's cloud solutions to help a Federal agency achieve its mission of securing critical infrastructure?</div>
+            <div class="prompt-actions">
+              <button class="btn btn-microsoft" onclick="copyPrompt('microsoft-prompt-text')">
+                <i class="fas fa-copy"></i>
+                <span>Copy Prompt</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        </div>
   </section>
   
   <!-- FAQ section -->
